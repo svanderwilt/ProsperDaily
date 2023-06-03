@@ -30,6 +30,9 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
+	  <CreatePackage>false</CreatePackage>
+	</PropertyGroup>
 	<ItemGroup>
 		<!-- App Icon -->
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
@@ -52,4 +55,16 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <MauiXaml Remove="Resources\Styles\AppStyles.xaml" />
+	</ItemGroup>
+	<ItemGroup>
+	  <BundleResource Include="Resources\Styles\AppStyles.xaml" />
+	  <BundleResource Include="Resources\Fonts\LibreFranklin-Regular.ttf" />
+	  <BundleResource Include="Resources\Fonts\Roboto-Black.ttf" />
+	</ItemGroup>
+	<ItemGroup>
+	  <None Remove="Resources\Fonts\LibreFranklin-Regular.ttf" />
+	  <None Remove="Resources\Fonts\Roboto-Black.ttf" />
+	</ItemGroup>
 </Project>
